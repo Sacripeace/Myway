@@ -52,7 +52,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="min-h-screen py-10 px-4 bg-[#f5f5f7] dark:bg-black flex justify-center items-center relative overflow-hidden">
+        <section className="min-h-screen py-10 px-4 bg-[#f5f5f7] dark:bg-black flex flex-col justify-center items-center relative overflow-hidden">
             {/* Background Image */}
             <img
                 src={bgImage}
@@ -171,6 +171,19 @@ const Hero = () => {
                 </BentoItem>
 
             </div>
+
+            {/* Footer Text */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="mt-12 text-center relative z-10"
+            >
+                <p className="text-[10px] md:text-xs font-medium text-gray-800 dark:text-gray-400 leading-relaxed tracking-wide">
+                    위 홈페이지는 React를 기반으로 제작하였으며, Anitgravity와 Claude Code를 활용하여 제작하였습니다.<br />
+                    Github에 push하였으며, Vercel을 이용하여 배포하였습니다.
+                </p>
+            </motion.div>
         </section>
     );
 };
