@@ -19,7 +19,7 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-xl text-gray-600 dark:text-gray-300 mb-12"
+                    className="text-sm md:text-xl text-gray-600 dark:text-gray-300 mb-12"
                 >
                     비즈니스와 기술의 간극을 줄이는 하이브리드 PM,<br />
                     귀사의 프로젝트를 성공으로 이끌 준비가 되어 있습니다.
@@ -66,7 +66,7 @@ const Contact = () => {
                         className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-accent dark:hover:text-white transition-colors"
                     >
                         <Download className="w-4 h-4" />
-                        <span>Download Portfolio</span>
+                        <span>B2B기획 포트폴리오</span>
                     </a>
                 </motion.div>
             </div>
