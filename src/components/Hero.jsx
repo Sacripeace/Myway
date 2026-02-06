@@ -180,8 +180,9 @@ const Hero = () => {
                 className="mt-12 text-center relative z-10"
             >
                 <p className="text-[10px] md:text-xs font-medium text-gray-800 dark:text-gray-400 leading-relaxed tracking-wide">
-                    위 홈페이지는 React를 기반으로 제작하였으며, Anitgravity와 Claude Code를 활용하여 제작하였습니다.<br />
-                    Github에 push하였으며, Vercel을 이용하여 배포하였습니다.
+                    위 홈페이지는 React+Vite를 기반으로 제작하였으며, Styling은 Tailwind CSS를 활용하였습니다.<br />
+                    AI Assistant는 Anitgravity와 Claude Code를 활용하여 제작하였습니다.<br />
+                    Github에 push하면, 자동으로 Vercel을 이용하여 배포하게 셋팅되어있습니다.
                 </p>
             </motion.div>
         </section>
