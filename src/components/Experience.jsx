@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
-import keycessImg1 from '../assets/keycess/keycess_1.jpg';
+
 
 const Lightbox = ({ images, initialIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -178,6 +178,17 @@ const Experience = () => {
     const [currentImages, setCurrentImages] = useState([]);
     const [initialImageIndex, setInitialImageIndex] = useState(0);
 
+    // Import all images from src/assets/portfolio
+    const portfolioImages = import.meta.glob('../assets/portfolio/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });
+
+    // Helper to get images by keyword and sort them simply
+    const getImagesByKeyword = (keyword) => {
+        return Object.keys(portfolioImages)
+            .filter(path => path.toLowerCase().includes(keyword.toLowerCase()))
+            .sort() // Sorts matching files alphabetically, e.g., keycess_01.jpeg, keycess_02.jpeg
+            .map(path => portfolioImages[path]);
+    };
+
     const openLightbox = (images, index) => {
         setCurrentImages(images);
         setInitialImageIndex(index);
@@ -193,11 +204,7 @@ const Experience = () => {
       범표 커피 텀블러, 아우디 모자, Mercedes-Benz 리플렛 시안 및 제작
       DTK 겨울맞이 캠페인 시안 작업
       상품 기획부터 소싱, 마케팅, 런칭 및 원가 절감, 통관 업무`,
-            images: [
-                keycessImg1,
-                keycessImg1, // Using same image as placeholder for now since only 1 was found
-                keycessImg1  // Using same image as placeholder for now since only 1 was found
-            ]
+            images: getImagesByKeyword('keycess')
         },
         {
             company: "(주)플렛코퍼레이션",
@@ -207,12 +214,7 @@ const Experience = () => {
       BVLGARI Korea: 대리석 트레이, 틴케이스(주문제작), 60" 투명우산, 가죽 트레이 제작
       NEXON: 투명 파우치 제작 업체 섭외, 샘플 제작 및 양산
       제일기획: 테일러 메이드 신상품 런칭 기념품 기획, 제작 업체 섭외 및 양산`,
-            images: [
-                "https://images.unsplash.com/photo-1616401784845-180886ba9bb8?q=80&w=600&auto=format&fit=crop", // Luxury package placeholder
-                "https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=600&auto=format&fit=crop", // Marble/Tray placeholder
-                "https://images.unsplash.com/photo-1515598144247-f7035ce4672b?q=80&w=600&auto=format&fit=crop", // Pouch/Bag placeholder
-                "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=600&auto=format&fit=crop"  // Gift placeholder
-            ]
+            images: getImagesByKeyword('platcorp')
         },
         {
             company: "씨엔엠",
@@ -224,12 +226,7 @@ const Experience = () => {
       공기업 직원용 바람막이 제작 및 부산국제 모터쇼 기획 상품(모자, USB 등) 제작
       하이네킨 센세이션 행사: LED 셔터 셰이드 제작 및 납품
       청담동 레스토랑 영상 매체 관리 및 홍보용 영상 제작 (약 15개 가맹점)`,
-            images: [
-                "https://images.unsplash.com/photo-1563861826100-9cb868c6c1ec?q=80&w=600&auto=format&fit=crop", // Car accessories
-                "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600&auto=format&fit=crop", // Car
-                "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=600&auto=format&fit=crop", // F1/Racing
-                "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600&auto=format&fit=crop"  // Cars
-            ]
+            images: getImagesByKeyword('cnm')
         },
         {
             company: "(주)엔시스텍",
@@ -238,50 +235,47 @@ const Experience = () => {
             description: `자체 개발 Chip을 이용한 모뎀 설계 제품 테스트
       자사 개발 Chip을 이용한 PCB 보드 제작
       제품 양산 업무 및 양산업체 미팅`,
-            images: [
-                "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop", // PCB/Chip
-                "https://images.unsplash.com/photo-1555664424-778a69aedbb0?q=80&w=600&auto=format&fit=crop", // Electronics
-                "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop", // Manufacturing
-                "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop"  // Engineering
-            ]
+            images: []
         }
     ];
+}
+    ];
 
-    return (
-        <section className="py-20 px-6 max-w-5xl mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="mb-16 text-center"
-            >
-                <h2 className="text-accent font-bold tracking-widest uppercase mb-2">My Journey</h2>
-                <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Experience</h3>
-            </motion.div>
+return (
+    <section className="py-20 px-6 max-w-5xl mx-auto">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+        >
+            <h2 className="text-accent font-bold tracking-widest uppercase mb-2">My Journey</h2>
+            <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Experience</h3>
+        </motion.div>
 
-            <div className="space-y-4">
-                {experiences.map((exp, index) => (
-                    <ExperienceItem
-                        key={index}
-                        {...exp}
-                        index={index}
-                        onImageClick={openLightbox}
-                    />
-                ))}
-            </div>
+        <div className="space-y-4">
+            {experiences.map((exp, index) => (
+                <ExperienceItem
+                    key={index}
+                    {...exp}
+                    index={index}
+                    onImageClick={openLightbox}
+                />
+            ))}
+        </div>
 
-            <AnimatePresence>
-                {lightboxOpen && (
-                    <Lightbox
-                        images={currentImages}
-                        initialIndex={initialImageIndex}
-                        onClose={() => setLightboxOpen(false)}
-                    />
-                )}
-            </AnimatePresence>
-        </section>
-    );
+        <AnimatePresence>
+            {lightboxOpen && (
+                <Lightbox
+                    images={currentImages}
+                    initialIndex={initialImageIndex}
+                    onClose={() => setLightboxOpen(false)}
+                />
+            )}
+        </AnimatePresence>
+    </section>
+);
 };
 
 export default Experience;
