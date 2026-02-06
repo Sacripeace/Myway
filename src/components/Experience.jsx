@@ -77,16 +77,28 @@ const Lightbox = ({ images, initialIndex, onClose }) => {
                 animate={{ opacity: 1, scale: isZoomed ? 1.5 : 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="relative max-w-[90vw] max-h-[90vh] cursor-zoom-in"
+                className="relative max-w-[90vw] max-h-[90vh] cursor-grab active:cursor-grabbing"
                 onClick={(e) => {
                     e.stopPropagation();
                     setIsZoomed(!isZoomed);
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+
+                    if (swipe < -10000 || offset.x < -100) { // Swipe Left -> Next
+                        handleNext();
+                    } else if (swipe > 10000 || offset.x > 100) { // Swipe Right -> Prev
+                        handlePrev();
+                    }
                 }}
             >
                 <img
                     src={images[currentIndex]}
                     alt={`Gallery image ${currentIndex + 1}`}
-                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl pointer-events-none" // prevent image drag ghost
                     draggable={false}
                 />
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm bg-black/50 px-3 py-1 rounded-full">
@@ -141,7 +153,7 @@ const ExperienceItem = ({ company, role, period, description, images, index, onI
                         transition={{ duration: 0.4, ease: "easeInOut" }}
                         className="overflow-hidden"
                     >
-                        <div className="flex gap-4 pt-4 pb-2 overflow-x-auto scrollbar-hide">
+                        <div className="flex gap-4 pt-4 pb-6 overflow-x-auto overflow-y-hidden scrollbar-hide">
                             {images.map((img, imgIndex) => (
                                 <motion.div
                                     key={imgIndex}
@@ -151,7 +163,7 @@ const ExperienceItem = ({ company, role, period, description, images, index, onI
                                     className="relative flex-shrink-0 cursor-pointer"
                                     onClick={() => onImageClick(images, imgIndex)}
                                 >
-                                    <div className="w-32 h-24 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-accent transition-all shadow-md hover:shadow-lg relative group/image">
+                                    <div className="w-52 h-40 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-accent transition-all shadow-md hover:shadow-lg relative group/image">
                                         <img
                                             src={img}
                                             alt={`${company} product ${imgIndex + 1}`}
@@ -208,7 +220,7 @@ const Experience = () => {
         },
         {
             company: "(주)플렛코퍼레이션",
-            role: "Founder & CEO / 기획 MD",
+            role: "대표 / 기획MD",
             period: "2013.01 ~ 2024.05",
             description: `ASTON MARTIN: Welcome Package 제품 제작 (공장 협의 및 진행)
       BVLGARI Korea: 대리석 트레이, 틴케이스(주문제작), 60" 투명우산, 가죽 트레이 제작

@@ -25,13 +25,13 @@ const Contact = () => {
                     귀사의 프로젝트를 성공으로 이끌 준비가 되어 있습니다.
                 </motion.p>
 
-                <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                <div className="flex flex-col md:flex-row justify-center gap-6 mb-16 w-full max-w-2xl mx-auto">
                     <motion.a
                         href="mailto:jenuks@daum.net"
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full transition-all border border-gray-200 dark:border-gray-700 hover:border-accent group shadow-lg"
+                        className="flex-1 w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full transition-all border border-gray-200 dark:border-gray-700 hover:border-accent group shadow-lg"
                     >
                         <Mail className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
                         <span className="font-medium">jenuks@daum.net</span>
@@ -42,7 +42,7 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full transition-all border border-gray-200 dark:border-gray-700 hover:border-accent group shadow-lg"
+                        className="flex-1 w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full transition-all border border-gray-200 dark:border-gray-700 hover:border-accent group shadow-lg"
                     >
                         <Smartphone className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
                         <span className="font-medium">010-3200-7092</span>
@@ -53,20 +53,16 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="flex justify-center"
+                    className="flex justify-center w-full max-w-2xl mx-auto"
                 >
-                    {/* Not uploading actual resume file yet, linking to Notion or placeholders if needed. 
-                 Since user provided a notion link, maybe link back there or a PDF download? 
-                 For now, let's keep it simple or use the B2B portfolio link again.
-             */}
                     <a
                         href="https://drive.google.com/file/d/1pL7eiVfNuXqKJbD01wIMymji5gLgQRCP/view?usp=drive_link"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-accent dark:hover:text-white transition-colors"
+                        className="flex items-center justify-center gap-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-full transition-all border border-gray-200 dark:border-gray-700 hover:border-accent group shadow-lg w-full"
                     >
-                        <Download className="w-4 h-4" />
-                        <span>B2B기획 포트폴리오</span>
+                        <Download className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+                        <span className="font-medium">B2B기획 포트폴리오</span>
                     </a>
                 </motion.div>
             </div>
