@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import keycessImg1 from '../assets/keycess/keycess_1.jpg';
 
 const Lightbox = ({ images, initialIndex, onClose }) => {
     const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -170,6 +171,8 @@ const ExperienceItem = ({ company, role, period, description, images, index, onI
     );
 };
 
+
+
 const Experience = () => {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentImages, setCurrentImages] = useState([]);
@@ -191,10 +194,9 @@ const Experience = () => {
       DTK 겨울맞이 캠페인 시안 작업
       상품 기획부터 소싱, 마케팅, 런칭 및 원가 절감, 통관 업무`,
             images: [
-                "https://images.unsplash.com/photo-1627555023961-75416c141d63?q=80&w=600&auto=format&fit=crop", // Diary/Stationery placeholder
-                "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop", // Jacket/Clothing placeholder
-                "https://images.unsplash.com/photo-1517260739832-a929bcff73d5?q=80&w=600&auto=format&fit=crop", // Tumbler placeholder
-                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop"  // Cap/Hat placeholder
+                keycessImg1,
+                keycessImg1, // Using same image as placeholder for now since only 1 was found
+                keycessImg1  // Using same image as placeholder for now since only 1 was found
             ]
         },
         {
