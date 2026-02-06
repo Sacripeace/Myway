@@ -238,44 +238,42 @@ const Experience = () => {
             images: []
         }
     ];
-}
-    ];
 
-return (
-    <section className="py-20 px-6 max-w-5xl mx-auto">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-16 text-center"
-        >
-            <h2 className="text-accent font-bold tracking-widest uppercase mb-2">My Journey</h2>
-            <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Experience</h3>
-        </motion.div>
+    return (
+        <section className="py-20 px-6 max-w-5xl mx-auto">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="mb-16 text-center"
+            >
+                <h2 className="text-accent font-bold tracking-widest uppercase mb-2">My Journey</h2>
+                <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">Experience</h3>
+            </motion.div>
 
-        <div className="space-y-4">
-            {experiences.map((exp, index) => (
-                <ExperienceItem
-                    key={index}
-                    {...exp}
-                    index={index}
-                    onImageClick={openLightbox}
-                />
-            ))}
-        </div>
+            <div className="space-y-4">
+                {experiences.map((exp, index) => (
+                    <ExperienceItem
+                        key={index}
+                        {...exp}
+                        index={index}
+                        onImageClick={openLightbox}
+                    />
+                ))}
+            </div>
 
-        <AnimatePresence>
-            {lightboxOpen && (
-                <Lightbox
-                    images={currentImages}
-                    initialIndex={initialImageIndex}
-                    onClose={() => setLightboxOpen(false)}
-                />
-            )}
-        </AnimatePresence>
-    </section>
-);
+            <AnimatePresence>
+                {lightboxOpen && (
+                    <Lightbox
+                        images={currentImages}
+                        initialIndex={initialImageIndex}
+                        onClose={() => setLightboxOpen(false)}
+                    />
+                )}
+            </AnimatePresence>
+        </section>
+    );
 };
 
 export default Experience;
