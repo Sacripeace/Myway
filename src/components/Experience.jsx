@@ -1,11 +1,107 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 
-const ExperienceItem = ({ company, role, period, description, index }) => {
+const Lightbox = ({ images, initialIndex, onClose }) => {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
+    const [isZoomed, setIsZoomed] = useState(false);
+
+    const handleNext = useCallback(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setIsZoomed(false);
+    }, [images.length]);
+
+    const handlePrev = useCallback(() => {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+        setIsZoomed(false);
+    }, [images.length]);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowRight') handleNext();
+            if (e.key === 'ArrowLeft') handlePrev();
+        };
+
+        const handleWheel = (e) => {
+            if (Math.abs(e.deltaY) > 50) { // Threshold to prevent too sensitive scrolling
+                if (e.deltaY > 0) handleNext();
+                else handlePrev();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('wheel', handleWheel, { passive: true });
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, [handleNext, handlePrev, onClose]);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+            onClick={onClose}
+        >
+            <button
+                onClick={onClose}
+                className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
+            >
+                <X size={32} />
+            </button>
+
+            <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-40">
+                <button
+                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                    className="pointer-events-auto p-2 rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/70 transition-all transform hover:scale-110"
+                >
+                    <ChevronLeft size={40} />
+                </button>
+                <button
+                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                    className="pointer-events-auto p-2 rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/70 transition-all transform hover:scale-110"
+                >
+                    <ChevronRight size={40} />
+                </button>
+            </div>
+
+            <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: isZoomed ? 1.5 : 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="relative max-w-[90vw] max-h-[90vh] cursor-zoom-in"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setIsZoomed(!isZoomed);
+                }}
+            >
+                <img
+                    src={images[currentIndex]}
+                    alt={`Gallery image ${currentIndex + 1}`}
+                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                    draggable={false}
+                />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm bg-black/50 px-3 py-1 rounded-full">
+                    {currentIndex + 1} / {images.length}
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+const ExperienceItem = ({ company, role, period, description, images, index, onImageClick }) => {
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <motion.div
@@ -13,7 +109,9 @@ const ExperienceItem = ({ company, role, period, description, index }) => {
             initial={{ y: 50, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="relative pl-8 pb-12 border-l-2 border-gray-200 dark:border-gray-700 last:border-l-0 last:pb-0"
+            className="relative pl-8 pb-12 border-l-2 border-gray-200 dark:border-gray-700 last:border-l-0 last:pb-0 group"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
             <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
 
@@ -28,14 +126,61 @@ const ExperienceItem = ({ company, role, period, description, index }) => {
 
             <h4 className="text-xl text-accent mb-4 font-semibold">{role}</h4>
 
-            <div className="text-gray-600 dark:text-gray-300 space-y-2 leading-relaxed whitespace-pre-line">
+            <div className="text-gray-600 dark:text-gray-300 space-y-2 leading-relaxed whitespace-pre-line mb-6">
                 {description}
             </div>
+
+            {/* Gallery Preview */}
+            <AnimatePresence>
+                {isHovered && images && images.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                    >
+                        <div className="flex gap-4 pt-4 pb-2 overflow-x-auto scrollbar-hide">
+                            {images.map((img, imgIndex) => (
+                                <motion.div
+                                    key={imgIndex}
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: imgIndex * 0.1 }}
+                                    className="relative flex-shrink-0 cursor-pointer"
+                                    onClick={() => onImageClick(images, imgIndex)}
+                                >
+                                    <div className="w-32 h-24 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-accent transition-all shadow-md hover:shadow-lg relative group/image">
+                                        <img
+                                            src={img}
+                                            alt={`${company} product ${imgIndex + 1}`}
+                                            className="w-full h-full object-cover transform group-hover/image:scale-110 transition-transform duration-500"
+                                        />
+                                        <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover/image:opacity-100">
+                                            <ZoomIn className="text-white w-6 h-6 drop-shadow-lg" />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };
 
 const Experience = () => {
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentImages, setCurrentImages] = useState([]);
+    const [initialImageIndex, setInitialImageIndex] = useState(0);
+
+    const openLightbox = (images, index) => {
+        setCurrentImages(images);
+        setInitialImageIndex(index);
+        setLightboxOpen(true);
+    };
+
     const experiences = [
         {
             company: "(주)키세스",
@@ -44,7 +189,13 @@ const Experience = () => {
             description: `BOSCH Korea 연간 기획물 제작 및 검품 (다이어리, 겨울 자켓, 작업자용 안전각반, PK여름용 티셔츠)
       범표 커피 텀블러, 아우디 모자, Mercedes-Benz 리플렛 시안 및 제작
       DTK 겨울맞이 캠페인 시안 작업
-      상품 기획부터 소싱, 마케팅, 런칭 및 원가 절감, 통관 업무`
+      상품 기획부터 소싱, 마케팅, 런칭 및 원가 절감, 통관 업무`,
+            images: [
+                "https://images.unsplash.com/photo-1627555023961-75416c141d63?q=80&w=600&auto=format&fit=crop", // Diary/Stationery placeholder
+                "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop", // Jacket/Clothing placeholder
+                "https://images.unsplash.com/photo-1517260739832-a929bcff73d5?q=80&w=600&auto=format&fit=crop", // Tumbler placeholder
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop"  // Cap/Hat placeholder
+            ]
         },
         {
             company: "(주)플렛코퍼레이션",
@@ -53,7 +204,13 @@ const Experience = () => {
             description: `ASTON MARTIN: Welcome Package 제품 제작 (공장 협의 및 진행)
       BVLGARI Korea: 대리석 트레이, 틴케이스(주문제작), 60" 투명우산, 가죽 트레이 제작
       NEXON: 투명 파우치 제작 업체 섭외, 샘플 제작 및 양산
-      제일기획: 테일러 메이드 신상품 런칭 기념품 기획, 제작 업체 섭외 및 양산`
+      제일기획: 테일러 메이드 신상품 런칭 기념품 기획, 제작 업체 섭외 및 양산`,
+            images: [
+                "https://images.unsplash.com/photo-1616401784845-180886ba9bb8?q=80&w=600&auto=format&fit=crop", // Luxury package placeholder
+                "https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=600&auto=format&fit=crop", // Marble/Tray placeholder
+                "https://images.unsplash.com/photo-1515598144247-f7035ce4672b?q=80&w=600&auto=format&fit=crop", // Pouch/Bag placeholder
+                "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=600&auto=format&fit=crop"  // Gift placeholder
+            ]
         },
         {
             company: "씨엔엠",
@@ -64,7 +221,13 @@ const Experience = () => {
       F1 코리아 그랑프리: VIP 고객 및 임직원용 점퍼 원단 수급, 제품 확인
       공기업 직원용 바람막이 제작 및 부산국제 모터쇼 기획 상품(모자, USB 등) 제작
       하이네킨 센세이션 행사: LED 셔터 셰이드 제작 및 납품
-      청담동 레스토랑 영상 매체 관리 및 홍보용 영상 제작 (약 15개 가맹점)`
+      청담동 레스토랑 영상 매체 관리 및 홍보용 영상 제작 (약 15개 가맹점)`,
+            images: [
+                "https://images.unsplash.com/photo-1563861826100-9cb868c6c1ec?q=80&w=600&auto=format&fit=crop", // Car accessories
+                "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600&auto=format&fit=crop", // Car
+                "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=600&auto=format&fit=crop", // F1/Racing
+                "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600&auto=format&fit=crop"  // Cars
+            ]
         },
         {
             company: "(주)엔시스텍",
@@ -72,7 +235,13 @@ const Experience = () => {
             period: "2002.03 ~ 2004.09",
             description: `자체 개발 Chip을 이용한 모뎀 설계 제품 테스트
       자사 개발 Chip을 이용한 PCB 보드 제작
-      제품 양산 업무 및 양산업체 미팅`
+      제품 양산 업무 및 양산업체 미팅`,
+            images: [
+                "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop", // PCB/Chip
+                "https://images.unsplash.com/photo-1555664424-778a69aedbb0?q=80&w=600&auto=format&fit=crop", // Electronics
+                "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop", // Manufacturing
+                "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop"  // Engineering
+            ]
         }
     ];
 
@@ -91,9 +260,24 @@ const Experience = () => {
 
             <div className="space-y-4">
                 {experiences.map((exp, index) => (
-                    <ExperienceItem key={index} {...exp} index={index} />
+                    <ExperienceItem
+                        key={index}
+                        {...exp}
+                        index={index}
+                        onImageClick={openLightbox}
+                    />
                 ))}
             </div>
+
+            <AnimatePresence>
+                {lightboxOpen && (
+                    <Lightbox
+                        images={currentImages}
+                        initialIndex={initialImageIndex}
+                        onClose={() => setLightboxOpen(false)}
+                    />
+                )}
+            </AnimatePresence>
         </section>
     );
 };
