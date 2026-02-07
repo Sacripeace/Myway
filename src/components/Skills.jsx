@@ -8,16 +8,16 @@ const SkillCard = ({ category, skills, index }) => (
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="bg-gray-100 dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-accent transition-colors"
+        className="bg-gray-100 dark:bg-gray-800/50 p-3 md:p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-accent transition-colors"
     >
         <h3 className="text-xl font-bold text-accent mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">{category}</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2 md:gap-4">
             {skills.map((skill) => (
                 <div
                     key={skill}
-                    className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:border-accent hover:shadow-md transition-all group"
+                    className="flex items-center gap-2 md:gap-3 p-1.5 md:p-2 rounded-lg bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:border-accent hover:shadow-md transition-all group"
                 >
-                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+                    <div className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0 flex items-center justify-center">
                         {skillIcons[skill] ? (
                             <>
                                 <img
@@ -35,7 +35,7 @@ const SkillCard = ({ category, skills, index }) => (
                             <div className="w-full h-full bg-gray-200 dark:bg-gray-600 rounded-full"></div>
                         )}
                     </div>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-accent transition-colors">
+                    <span className="text-[10px] md:text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-accent transition-colors truncate">
                         {skill}
                     </span>
                 </div>

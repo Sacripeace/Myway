@@ -61,9 +61,9 @@ const Hero = () => {
             />
 
             {/* Grid Container */}
-            <div className="max-w-[1200px] w-full grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 auto-rows-[100px] md:auto-rows-[130px] gap-3 md:gap-4 p-2 md:p-6 bg-white dark:bg-gray-900 rounded-[3rem] shadow-2xl border border-gray-200 dark:border-gray-800 relative z-10">
+            <div className="max-w-[1200px] w-full grid grid-cols-12 md:grid-cols-6 lg:grid-cols-8 auto-rows-[100px] md:auto-rows-[130px] gap-2 md:gap-4 p-2 md:p-6 bg-white dark:bg-gray-900 rounded-[3rem] shadow-2xl border border-gray-200 dark:border-gray-800 relative z-10">
 
-                <BentoItem className="bg-[#f5f5f7] dark:bg-gray-800 !items-start !justify-start p-6 md:p-8" span="col-span-4 md:col-span-4 lg:col-span-4 row-span-2" hoverScale={1.02}>
+                <BentoItem className="bg-[#f5f5f7] dark:bg-gray-800 !items-start !justify-start p-6 md:p-8" span="col-span-12 md:col-span-4 lg:col-span-4 row-span-2" hoverScale={1.02}>
                     <span className="text-red-500 font-bold text-xs md:text-sm tracking-wide mb-1">18년차 프로덕트 매니저</span>
                     <h1 className="text-3xl md:text-3xl lg:text-4xl font-black text-black dark:text-gray-100 leading-tight tracking-tight mb-2">
                         비즈니스와 개발의 언어를<br />모두 구사하는 통역사
@@ -72,7 +72,7 @@ const Hero = () => {
                 </BentoItem>
 
                 {/* 2. Profile Photo (Top Right, Large Block) */}
-                <BentoItem className="!p-0 bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-2 lg:col-span-4 row-span-4" hoverScale={1.02}>
+                <BentoItem className="!p-0 bg-gray-100 dark:bg-gray-800" span="col-span-12 md:col-span-2 lg:col-span-4 row-span-4" hoverScale={1.02}>
                     <div className="relative w-full h-full">
                         <img
                             src={profileImg}
@@ -90,84 +90,69 @@ const Hero = () => {
                 {/* 3. Skill Squares (Surrounding) - All Light Gray Backgrounds */}
 
                 {/* Row 1 Skills */}
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.react} label="React" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.react} label="React" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.java} label="Java" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.java} label="Java" iconSize="w-10 h-10 md:w-20 md:h-20" />
+                </BentoItem>
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.docker} label="Docker" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
 
                 {/* Row 2 Skills */}
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.docker} label="Docker" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.aws} darkSrc={icons.awsDark} label="AWS EC2" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.aws} darkSrc={icons.awsDark} label="AWS EC2" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.spring} label="Spring" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.spring} label="Spring" />
-                </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.vscode} label="VS Code" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.vscode} label="VS Code" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
 
                 {/* Row 3 (Below Headline) - Antigravity */}
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-2 row-span-1">
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-12 md:col-span-2 row-span-1">
                     <div className="flex items-center gap-4">
-                        <img src={icons.antigravity} className="w-22 h-14 rounded-xl object-contain" />
+                        <img src={icons.antigravity} className="w-16 h-10 md:w-22 md:h-14 rounded-xl object-contain" />
                         <div className="flex flex-col text-left">
-                            <span className="text-xs text-blue-500 font-bold uppercase">AI Assistant</span>
-                            <span className="text-2xl font-bold text-gray-800 dark:text-white">Antigravity</span>
+                            <span className="text-[10px] md:text-xs text-blue-500 font-bold uppercase">AI Assistant</span>
+                            <span className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white">Antigravity</span>
                         </div>
                     </div>
                 </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <div className="flex flex-col items-center justify-center w-full h-full p-4">
-                        <img src={icons.github} alt="Github" className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-sm dark:hidden" />
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png" alt="Github" className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-sm hidden dark:block" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <div className="flex flex-col items-center justify-center w-full h-full p-2 md:p-4">
+                        <img src={icons.github} alt="Github" className="w-10 h-10 md:w-20 md:h-20 object-contain drop-shadow-sm dark:hidden" />
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png" alt="Github" className="w-10 h-10 md:w-20 md:h-20 object-contain drop-shadow-sm hidden dark:block" />
                         <span className="text-[10px] md:text-xs font-bold mt-2 tracking-wide text-gray-600 dark:text-gray-300">Github</span>
                     </div>
                 </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.kubernetes} label="K8s" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.kubernetes} label="K8s" iconSize="w-10 h-10 md:w-20 md:h-20" />
+                </BentoItem>
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.mariadb} darkSrc={icons.mariadbDark} label="MariaDB" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
 
-                {/* Row 4 (Bottom) - Swapped MariaDB and MyBatis */}
-
-                {/* Was MariaDB (Large), Row MyBatis (Small). Now Swapping positions. */}
-
-                {/* MyBatis (Large Position - but user asked for logo only, so maybe just standard box size but prominent?) 
-                    The user said "MariaDB and MyBatis swap positions". 
-                    In previous layout: 
-                    - MariaDB was col-span-2 row-span-1 (actually it was labeled as Large in the first attempt, but in the previous step it was just row-span-1 col-span-2).
-                    - MyBatis was col-span-2 md:col-span-1.
-                    
-                    Let's make MyBatis take the larger slot (col-span-2) and MariaDB the smaller slot? 
-                    Or just swap their physical locations in the grid.
-                    
-                    Let's put MyBatis in the "Pink" slot (now gray) wide box, and MariaDB in the small box.
-                */}
-
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-2 row-span-1">
+                {/* Row 4 (Bottom) */}
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-8 md:col-span-2 row-span-1">
                     <div className="w-full h-full flex items-center justify-center p-4">
-                        <img src={icons.mybatis} className="w-full h-full object-contain max-h-[57px]" />
+                        <img src={icons.mybatis} className="w-full h-full object-contain max-h-[40px] md:max-h-[57px]" />
                         {/* Logo only, large usage of space */}
                     </div>
                 </BentoItem>
 
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.mariadb} darkSrc={icons.mariadbDark} label="MariaDB" />
+                {/* Remaining items */}
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.figma} label="Figma" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
 
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.figma} label="Figma" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.excel} label="Excel" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
-
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.excel} label="Excel" />
-                </BentoItem>
-                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-2 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.ppt} label="PPT" />
+                <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
+                    <SkillIcon src={icons.ppt} label="PPT" iconSize="w-10 h-10 md:w-20 md:h-20" />
                 </BentoItem>
 
             </div>
