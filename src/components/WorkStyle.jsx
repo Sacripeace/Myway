@@ -15,12 +15,12 @@ const WorkStyle = () => {
 
                     {/* Left Column: Image & Mascot */}
                     <div className="w-full md:w-1/3 flex flex-col items-center text-center relative z-10">
-                        <div className="w-48 h-48 md:w-56 md:h-56 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-6 relative group">
-                            <div className="absolute inset-0 rounded-full bg-blue-200/50 dark:bg-blue-500/10 blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        <div className="w-48 h-48 md:w-56 md:h-56 bg-blue-50 dark:bg-blue-900/20 rounded-[1rem] flex items-center justify-center mb-6 relative group">
+                            <div className="absolute inset-0 rounded-[2rem] bg-blue-200/50 dark:bg-blue-500/10 blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                             <img
                                 src={hybridPmIcon}
                                 alt="Hybrid PM Mascot"
-                                className="w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300"
+                                className="w-40 h-40 md:w-48 md:h-48 object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300 rounded-[1rem]"
                             />
                         </div>
                         <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">
