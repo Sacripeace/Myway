@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import ThemeToggle from './components/ui/ThemeToggle'
 import Hero from './components/Hero'
 import Experience from './components/Experience'

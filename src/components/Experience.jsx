@@ -191,7 +191,7 @@ const Experience = () => {
     const [initialImageIndex, setInitialImageIndex] = useState(0);
 
     // Import all images from src/assets/portfolio
-    const portfolioImages = import.meta.glob('../assets/portfolio/*.{png,jpg,jpeg,svg}', { eager: true, as: 'url' });
+    const portfolioImages = import.meta.glob('../assets/portfolio/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
 
     // Helper to get images by keyword and sort them simply
     const getImagesByKeyword = (keyword) => {

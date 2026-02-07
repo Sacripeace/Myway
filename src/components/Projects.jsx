@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { skillIcons } from '../constants/skillIcons';
 import { ExternalLink } from 'lucide-react';
 
-const ProjectCard = ({ title, subTitle, description, period, stack, index, link }) => (
+const ProjectCard = ({ title, subTitle, description, period, stack, index }) => (
     <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
