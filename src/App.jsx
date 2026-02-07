@@ -1,5 +1,6 @@
 import ThemeToggle from './components/ui/ThemeToggle'
 import Hero from './components/Hero'
+import WorkStyle from './components/WorkStyle'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
@@ -11,6 +12,7 @@ function App() {
       <ThemeToggle />
       <main>
         <Hero />
+        <WorkStyle />
         <Experience />
         <Skills />
         <Projects />
