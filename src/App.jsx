@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import ThemeToggle from './components/ui/ThemeToggle'
 import Hero from './components/Hero'
 import WorkStyle from './components/WorkStyle'
@@ -18,6 +19,7 @@ function App() {
         <Projects />
         <Contact />
       </main>
+      <SpeedInsights />
     </div>
   )
 }
