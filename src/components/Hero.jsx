@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import profileImg from '../assets/jinwook_photo.jpg';
 import mariaDbDark from '../assets/icons8-mariadb-96.png';
 import bgImage from '../assets/web-design-2906159.jpg';
+import antigravityIcon from '../assets/Antigravity_icon.png';
 
 // Reusable Bento Card Component
 const BentoItem = ({ children, className = "", span = "", onClick, hoverScale = 1.05 }) => (
@@ -48,7 +49,7 @@ const Hero = () => {
         ppt: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/PowerPoint-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         word: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/Word-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         claude: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/anthropic.png",
-        antigravity: "src/assets/Antigravity_icon.png", // Updated from skillIcons.js
+        antigravity: antigravityIcon, // Updated from skillIcons.js
     };
 
     return (

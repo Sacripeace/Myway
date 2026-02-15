@@ -1,4 +1,5 @@
 import mariaDbDark from '../assets/icons8-mariadb-96.png';
+import antigravityIcon from '../assets/Antigravity_icon.png';
 
 export const skillIcons = {
     // Frontend
@@ -165,7 +166,7 @@ export const skillIcons = {
         dark: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/anthropic.png"
     },
     "Antigravity": {
-        light: "src/assets/Antigravity_icon.png",
-        dark: "src/assets/Antigravity_icon.png"
+        light: antigravityIcon,
+        dark: antigravityIcon
     }
 };
