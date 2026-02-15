@@ -48,7 +48,7 @@ const Hero = () => {
         ppt: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/PowerPoint-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         word: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/Word-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         claude: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/anthropic.png",
-        antigravity: "src/assets/Antigravity_icon.webp", // Updated from skillIcons.js
+        antigravity: "src/assets/Antigravity_icon.png", // Updated from skillIcons.js
     };
 
     return (

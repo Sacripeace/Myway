@@ -165,7 +165,7 @@ export const skillIcons = {
         dark: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/anthropic.png"
     },
     "Antigravity": {
-        light: "src/assets/Antigravity_icon.webp",
-        dark: "src/assets/Antigravity_icon.webp"
+        light: "src/assets/Antigravity_icon.png",
+        dark: "src/assets/Antigravity_icon.png"
     }
 };
