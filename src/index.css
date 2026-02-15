@@ -16,15 +16,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply min-h-screen bg-gray-50 text-gray-900 dark:bg-primary dark:text-white transition-colors duration-300 selection:bg-accent selection:text-white font-sans antialiased;
+    margin: 0;
+    padding: 0;
+  }
 
-#root {
-  width: 100%;
-  margin: 0 auto;
+  #root {
+    @apply h-full w-full;
+  }
 }
