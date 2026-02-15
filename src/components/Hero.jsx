@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import profileImg from '../assets/jinwook_photo.jpg';
-import mariaDbDark from '../assets/icons8-mariadb-96.png';
 import bgImage from '../assets/web-design-2906159.jpg';
 import antigravityIcon from '../assets/Antigravity_icon.png';
 

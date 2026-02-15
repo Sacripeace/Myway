@@ -1,5 +1,7 @@
 import mariaDbDark from '../assets/icons8-mariadb-96.png';
 import antigravityIcon from '../assets/Antigravity_icon.png';
+import geminiIcon from '../assets/Google_Gemini_icon_2025.svg';
+import fcpIcon from '../assets/finalCutProIcon.webp';
 
 export const skillIcons = {
     // Frontend
@@ -124,8 +126,8 @@ export const skillIcons = {
         dark: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/aftereffects/aftereffects-original.svg"
     },
     "Final Cut Pro": {
-        light: "https://i.namu.wiki/i/2xZUEkq59WPu6exy8eu41CHnNIst__iuFXpTcnqMEVIlYh7fnRbFPZptZGTsheMyl03BbcWh5GYCz_XZN7frRgRYgzaVeCrw2MiAssb_ZHy3agXjAI2-L0tJwdWfLdsZvEMj-2K5KIlT1oennk9ueg.webp",
-        dark: "https://i.namu.wiki/i/2xZUEkq59WPu6exy8eu41CHnNIst__iuFXpTcnqMEVIlYh7fnRbFPZptZGTsheMyl03BbcWh5GYCz_XZN7frRgRYgzaVeCrw2MiAssb_ZHy3agXjAI2-L0tJwdWfLdsZvEMj-2K5KIlT1oennk9ueg.webp"
+        light: fcpIcon,
+        dark: fcpIcon
     },
     "Figma": {
         light: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
@@ -150,8 +152,8 @@ export const skillIcons = {
         dark: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/openai.png"
     },
     "Gemini": {
-        light: "https://i.namu.wiki/i/A7snj0nLOp8A5XhDqo6eItfFPaLgAJ8A1pJPN3L9v8fK2peOnp5Yox4vS9bw684XS1JbHA31lxUSVqucVf9-ebfGugo5Y2vsm1t24UZQDKnBocOwMGKY8FQ45Ck-XkCV0a1BLL0iXCB5sQOaMsvofA.webp",
-        dark: "https://i.namu.wiki/i/A7snj0nLOp8A5XhDqo6eItfFPaLgAJ8A1pJPN3L9v8fK2peOnp5Yox4vS9bw684XS1JbHA31lxUSVqucVf9-ebfGugo5Y2vsm1t24UZQDKnBocOwMGKY8FQ45Ck-XkCV0a1BLL0iXCB5sQOaMsvofA.webp"
+        light: geminiIcon,
+        dark: geminiIcon
     },
     "Claude": {
         light: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/claude-color.png",
