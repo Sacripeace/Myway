@@ -38,8 +38,8 @@ const Hero = () => {
         docker: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
         kubernetes: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg",
         figma: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
-        mariadb: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mariadb/mariadb-original.svg",
-        mariadbDark: mariaDbDark,
+        claudeCode: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/anthropic.png",
+        claudeCodeDark: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/anthropic.png",
         mybatis: "https://mybatis.org/images/mybatis-logo.png", // Using the official logo
         illustrator: "https://www.adobe.com/cc-shared/assets/img/product-icons/svg/illustrator-40.svg", // Updated from skillIcons.js
         photoshop: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg",
@@ -48,7 +48,7 @@ const Hero = () => {
         ppt: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/PowerPoint-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         word: "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/Word-Icon-FY26?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=58&hei=58&qlt=75&fit=constrain",
         claude: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/anthropic.png",
-        antigravity: "https://i.namu.wiki/i/5tU_hDHz-33UNu3CdUyS9oVhUiuKluokrIh5aazNuu1e3fS0sWEm9jC_rS8lL7-8tp_3HqKnj97Z7s3km3HX_UmJye4zJJto7z0-Tiuv7O9KbrxfbTsVl_yaa5A_tw9rlENQP9Rktj82_WCr9UsjGw.webp", // Updated from skillIcons.js
+        antigravity: "src/assets/Antigravity_icon.webp", // Updated from skillIcons.js
     };
 
     return (
@@ -102,7 +102,7 @@ const Hero = () => {
 
                 {/* Row 2 Skills */}
                 <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.aws} darkSrc={icons.awsDark} label="AWS EC2" />
+                    <SkillIcon src={icons.aws} darkSrc={icons.awsDark} label="AWS" />
                 </BentoItem>
                 <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
                     <SkillIcon src={icons.spring} label="Spring" />
@@ -129,10 +129,10 @@ const Hero = () => {
                     </div>
                 </BentoItem>
                 <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.kubernetes} label="K8s" />
+                    <SkillIcon src={icons.kubernetes} label="Kubernetes" />
                 </BentoItem>
                 <BentoItem className="bg-gray-100 dark:bg-gray-800" span="col-span-4 md:col-span-1 row-span-1">
-                    <SkillIcon src={icons.mariadb} darkSrc={icons.mariadbDark} label="MariaDB" />
+                    <SkillIcon src={icons.claudeCode} darkSrc={icons.claudeCodeDark} label="Claude Code" />
                 </BentoItem>
 
                 {/* Row 4 (Bottom) */}

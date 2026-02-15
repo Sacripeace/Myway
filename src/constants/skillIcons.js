@@ -165,7 +165,7 @@ export const skillIcons = {
         dark: "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/anthropic.png"
     },
     "Antigravity": {
-        light: "https://i.namu.wiki/i/5tU_hDHz-33UNu3CdUyS9oVhUiuKluokrIh5aazNuu1e3fS0sWEm9jC_rS8lL7-8tp_3HqKnj97Z7s3km3HX_UmJye4zJJto7z0-Tiuv7O9KbrxfbTsVl_yaa5A_tw9rlENQP9Rktj82_WCr9UsjGw.webp",
-        dark: "https://i.namu.wiki/i/5tU_hDHz-33UNu3CdUyS9oVhUiuKluokrIh5aazNuu1e3fS0sWEm9jC_rS8lL7-8tp_3HqKnj97Z7s3km3HX_UmJye4zJJto7z0-Tiuv7O9KbrxfbTsVl_yaa5A_tw9rlENQP9Rktj82_WCr9UsjGw.webp"
+        light: "src/assets/Antigravity_icon.webp",
+        dark: "src/assets/Antigravity_icon.webp"
     }
 };
